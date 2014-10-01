@@ -25,3 +25,19 @@ bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   EOH
 end
 
+template "/etc/init/acadock-monitoring.conf" do
+  source 'acadock-monitoring.conf.erb'
+  mode 0664
+  variables({
+    target: File.join(node['acadock']['install_path'], "acadock-monitoring"),
+    port: node['acadock']['port']
+  })
+  notifies :stop, "service[acadock-monitoring]", :delayed
+  notifies :start, "service[acadock-monitoring]", :delayed
+end
+
+service 'acadock-monitoring' do
+  provider Chef::Provider::Service::Upstart
+  action [:enable]
+end
+
