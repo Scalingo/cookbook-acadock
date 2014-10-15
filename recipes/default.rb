@@ -24,7 +24,7 @@ bash "extract acadock-monitoring #{node['acadock']['version'] }" do
     tar -C #{node['acadock']['install_path']} -xvf #{dest_path}
   EOH
   subscribes :run, "remote_file[#{dest_path}]"
-  action :noting
+  action :nothing
 end
 
 template "/etc/init/acadock-monitoring.conf" do
