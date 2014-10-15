@@ -23,6 +23,8 @@ bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
     tar -C #{node['acadock']['install_path']} -xvf #{dest_path}
   EOH
+  subscribes :run, "remote_file[#{dest_path}]"
+  action :noting
 end
 
 template "/etc/init/acadock-monitoring.conf" do
@@ -38,6 +40,7 @@ end
 
 service 'acadock-monitoring' do
   provider Chef::Provider::Service::Upstart
+  subscribes :restart, "remote_file[#{dest_path}]"
   action [:enable]
 end
 
