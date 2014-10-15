@@ -13,7 +13,7 @@ download_url =
   node['acadock']['version'] + "-linux-" +
   node['acadock']['arch'] + ".tar.gz"
 
-dest_path = "#{Chef::Config[:file_cache_path]}/acadock-monitoring.tar.xz"
+dest_path = "#{Chef::Config[:file_cache_path]}/acadock-monitoring.tar.gz"
 
 remote_file dest_path do
   source download_url
