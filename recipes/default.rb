@@ -6,14 +6,16 @@
 #
 # License MIT
 #
+ 
+filename = "acadock-monitoring-" +
+           node['acadock']['version'] + "-linux-" +
+           node['acadock']['arch'] + ".tar.gz"
 
 download_url = 
   node['acadock']['download_url'] + "/" +
-  node['acadock']['version'] + "/acadock-monitoring-" +
-  node['acadock']['version'] + "-linux-" +
-  node['acadock']['arch'] + ".tar.gz"
+  node['acadock']['version'] + "/" + filename
 
-dest_path = "#{Chef::Config[:file_cache_path]}/acadock-monitoring.tar.gz"
+dest_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
 
 remote_file dest_path do
   source download_url
