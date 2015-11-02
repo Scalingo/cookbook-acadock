@@ -7,13 +7,13 @@
 # License MIT
 #
  
-filename = "acadock-monitoring-" +
-           node['acadock']['version'] + "-linux-" +
+filename = "acadock-monitoring_" +
+           node['acadock']['version'] + "_linux_" +
            node['acadock']['arch'] + ".tar.gz"
 basename = File.basename filename
 
 download_url = 
-  node['acadock']['download_url'] + "/" +
+  node['acadock']['download_url'] + "/v" +
   node['acadock']['version'] + "/" + filename
 
 dest_path = "#{Chef::Config[:file_cache_path]}/#{filename}"

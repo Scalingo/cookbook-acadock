@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.2.1
+-----
+
+* [Soulou] - Fix download URL
+
 0.2.0
 -----
 
