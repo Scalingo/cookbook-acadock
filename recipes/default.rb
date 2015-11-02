@@ -26,7 +26,7 @@ end
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
     tar -C "#{extract_dir_path}" -xvf #{dest_path}
-    cp "#{extract_dir_path}/acadocker-monitoring" "#{node['acadock']['install_path']}"
+    cp "#{extract_dir_path}/acadock-monitoring" "#{node['acadock']['install_path']}"
   EOH
   subscribes :run, "remote_file[#{dest_path}]"
   action :nothing
