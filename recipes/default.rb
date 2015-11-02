@@ -7,10 +7,10 @@
 # License MIT
 #
  
-filename = "acadock-monitoring_" +
+basename = "acadock-monitoring_" +
            node['acadock']['version'] + "_linux_" +
-           node['acadock']['arch'] + ".tar.gz"
-basename = File.basename filename
+           node['acadock']['arch']
+filename = "#{basename}.tar.gz"
 
 download_url = 
   node['acadock']['download_url'] + "/v" +
