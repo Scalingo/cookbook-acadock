@@ -25,7 +25,7 @@ end
 
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
-    tar -xvf #{dest_path}
+    tar -C "#{Chef::Config[:file_cache_path]}" -xvf #{dest_path}
     cp "#{extract_dir_path}/acadock-monitoring-ns-netstat" "#{node['acadock']['install_path']}"
     cp "#{extract_dir_path}/server" "#{node['acadock']['install_path']}/acadock-monitoring"
   EOH
