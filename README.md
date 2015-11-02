@@ -55,4 +55,4 @@ Contributing
 
 License and Authors
 -------------------
-Authors: Léo Unbekandt `leo@unbekandt.eu`
+Authors: Léo Unbekandt `Soulou`

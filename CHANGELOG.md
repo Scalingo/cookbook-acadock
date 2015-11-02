@@ -3,9 +3,15 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.2.0
+-----
+
+* [Soulou] - Fix extraction bug during installation
+* [Soulou] - Use 0.2.0 version of acadock-monitoring 
+
 0.1.0
 -----
-- [your_name] - Initial release of acadock
+* [Soulou] - Initial release of acadock
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

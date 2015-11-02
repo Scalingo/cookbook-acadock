@@ -10,12 +10,14 @@
 filename = "acadock-monitoring-" +
            node['acadock']['version'] + "-linux-" +
            node['acadock']['arch'] + ".tar.gz"
+basename = File.basename filename
 
 download_url = 
   node['acadock']['download_url'] + "/" +
   node['acadock']['version'] + "/" + filename
 
 dest_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
+extract_dir_path = "#{Chef::Config[:file_cache_path]}/#{basename}"
 
 remote_file dest_path do
   source download_url
@@ -23,7 +25,8 @@ end
 
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
-    tar -C #{node['acadock']['install_path']} -xvf #{dest_path}
+    tar -C "#{extract_dir_path}" -xvf #{dest_path}
+    cp "#{extract_dir_path}/acadocker-monitoring" "#{node['acadock']['install_path']}"
   EOH
   subscribes :run, "remote_file[#{dest_path}]"
   action :nothing
