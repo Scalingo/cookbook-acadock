@@ -3,6 +3,16 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.2.4
+-----
+
+* [Soulou] - Create extraction directory
+
+0.2.3
+-----
+
+* [Soulou] - Fix binary name
+
 0.2.2
 -----
 
