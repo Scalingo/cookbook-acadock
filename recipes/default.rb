@@ -26,8 +26,8 @@ end
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
     tar -C "#{Chef::Config[:file_cache_path]}" -xvf #{dest_path}
-    cp "#{extract_dir_path}/acadock-monitoring-ns-netstat" "#{node['acadock']['install_path']}"
-    cp "#{extract_dir_path}/server" "#{node['acadock']['install_path']}/acadock-monitoring"
+    cp -f "#{extract_dir_path}/acadock-monitoring-ns-netstat" "#{node['acadock']['install_path']}"
+    cp -f "#{extract_dir_path}/server" "#{node['acadock']['install_path']}/acadock-monitoring"
   EOH
   subscribes :run, "remote_file[#{dest_path}]"
   action :nothing
