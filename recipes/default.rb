@@ -25,8 +25,7 @@ end
 
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
-    mkdir -p "#{extract_dir_path}"
-    tar -C "#{extract_dir_path}" -xvf #{dest_path}
+    tar -xvf #{dest_path}
     cp "#{extract_dir_path}/acadock-monitoring-ns-netstat" "#{node['acadock']['install_path']}"
     cp "#{extract_dir_path}/server" "#{node['acadock']['install_path']}/acadock-monitoring"
   EOH
