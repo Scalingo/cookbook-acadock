@@ -37,6 +37,7 @@ template "/etc/init/acadock-monitoring.conf" do
   source 'acadock-monitoring.conf.erb'
   mode 0664
   variables({
+    docker_url: node['acaodock']['docker_url'],
     target: File.join(node['acadock']['install_path'], "acadock-monitoring"),
     port: node['acadock']['port']
   })
