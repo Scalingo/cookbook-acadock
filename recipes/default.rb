@@ -37,7 +37,7 @@ template "/etc/init/acadock-monitoring.conf" do
   mode 0664
   variables({
     docker_url: node['acadock']['docker_url'],
-    target: File.join(acadock_dir "acadock-monitoring"),
+    target: File.join(acadock_dir, "acadock-monitoring"),
     port: node['acadock']['port'],
   })
   notifies :stop, "service[acadock-monitoring]", :delayed
