@@ -16,20 +16,19 @@ download_url =
   node['acadock']['download_url'] + "/v" +
   node['acadock']['version'] + "/" + filename
 
-dest_path = "#{Chef::Config[:file_cache_path]}/#{filename}"
-extract_dir_path = "#{Chef::Config[:file_cache_path]}/#{basename}"
+install_path       = node['acadock']['install_path']
+download_dest_path = File.join Chef::Config[:file_cache_path], filename
+acadock_dir        = File.join install_path, basename
 
-remote_file dest_path do
+remote_file download_dest_path do
   source download_url
 end
 
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
-    tar -C "#{Chef::Config[:file_cache_path]}" -xvf #{dest_path}
-    cp -f "#{extract_dir_path}/acadock-monitoring" "#{node['acadock']['install_path']}/acadock-monitoring"
+    tar -C #{install_path} -xvf #{download_dest_path}
   EOH
-  creates "#{node['acadock']['install_path']}/acadock-monitoring"
-  subscribes :run, "remote_file[#{dest_path}]"
+  creates "#{acadock_dir}/acadock-monitoring"
   action :nothing
 end
 
@@ -38,9 +37,8 @@ template "/etc/init/acadock-monitoring.conf" do
   mode 0664
   variables({
     docker_url: node['acadock']['docker_url'],
-    target: File.join(node['acadock']['install_path'], "acadock-monitoring"),
+    target: File.join(acadock_dir "acadock-monitoring"),
     port: node['acadock']['port'],
-    net_monitoring: node['acadock']['net_monitoring'],
   })
   notifies :stop, "service[acadock-monitoring]", :delayed
   notifies :start, "service[acadock-monitoring]", :delayed
@@ -48,7 +46,7 @@ end
 
 service 'acadock-monitoring' do
   provider Chef::Provider::Service::Upstart
-  subscribes :restart, "remote_file[#{dest_path}]"
+  subscribes :restart, "remote_file[#{download_dest_path}]"
   action [:enable]
 end
 
