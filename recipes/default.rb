@@ -6,13 +6,13 @@
 #
 # License MIT
 #
- 
+
 basename = "acadock-monitoring_" +
            node['acadock']['version'] + "_linux_" +
            node['acadock']['arch']
 filename = "#{basename}.tar.gz"
 
-download_url = 
+download_url =
   node['acadock']['download_url'] + "/v" +
   node['acadock']['version'] + "/" + filename
 
@@ -26,9 +26,9 @@ end
 bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   code <<-EOH
     tar -C "#{Chef::Config[:file_cache_path]}" -xvf #{dest_path}
-    cp -f "#{extract_dir_path}/acadock-monitoring-ns-netstat" "#{node['acadock']['install_path']}"
-    cp -f "#{extract_dir_path}/server" "#{node['acadock']['install_path']}/acadock-monitoring"
+    cp -f "#{extract_dir_path}/acadock-monitoring" "#{node['acadock']['install_path']}/acadock-monitoring"
   EOH
+  creates "#{node['acadock']['install_path']}/acadock-monitoring"
   subscribes :run, "remote_file[#{dest_path}]"
   action :nothing
 end
