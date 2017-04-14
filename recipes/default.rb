@@ -29,7 +29,6 @@ bash "extract acadock-monitoring #{node['acadock']['version'] }" do
     tar -C #{install_path} -xvf #{download_dest_path}
   EOH
   creates "#{acadock_dir}/acadock-monitoring"
-  action :nothing
 end
 
 template "/etc/init/acadock-monitoring.conf" do
