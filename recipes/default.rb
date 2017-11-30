@@ -31,21 +31,50 @@ bash "extract acadock-monitoring #{node['acadock']['version'] }" do
   creates "#{acadock_dir}/acadock-monitoring"
 end
 
-template "/etc/init/acadock-monitoring.conf" do
-  source 'acadock-monitoring.conf.erb'
-  mode 0664
-  variables({
-    docker_url: node['acadock']['docker_url'],
-    target: File.join(acadock_dir, "acadock-monitoring"),
-    port: node['acadock']['port'],
-  })
-  notifies :stop, "service[acadock-monitoring]", :delayed
-  notifies :start, "service[acadock-monitoring]", :delayed
-end
+if node['init_package'] == "systemd"
+  systemd_unit "acadock-monitoring.service" do
+    systemd_content = {
+      "Unit" => {
+        "Description" => "Acadock - Docker monitoring tool",
+        "After" => 'network.target',
+      },
+      "Service" => {
+        "ExecStart" => File.join(acadock_dir, "acadock-monitoring"),
+        "Restart" => "always",
+        "RestartSec" => "30s",
+        "Environment" => [
+          "PORT=#{node['acadock']['port']}",
+          "DOCKER_URL=#{node['acadock']['docker_url']}",
+        ]
+      },
+      "Install" => {
+        "WantedBy" => "multi-user.target"
+      }
+    }
+    content systemd_content
+    action :create
+  end
 
-service 'acadock-monitoring' do
-  provider Chef::Provider::Service::Upstart
-  subscribes :restart, "remote_file[#{download_dest_path}]"
-  action [:enable]
-end
+  service name do
+    provider Chef::Provider::Service::Systemd
+    action [:enable]
+  end
+else
+  template "/etc/init/acadock-monitoring.conf" do
+    source 'acadock-monitoring.conf.erb'
+    mode 0664
+    variables({
+      docker_url: node['acadock']['docker_url'],
+      target: File.join(acadock_dir, "acadock-monitoring"),
+      port: node['acadock']['port'],
+    })
+    notifies :stop, "service[acadock-monitoring]", :delayed
+    notifies :start, "service[acadock-monitoring]", :delayed
+  end
 
+  service 'acadock-monitoring' do
+    provider Chef::Provider::Service::Upstart
+    subscribes :restart, "remote_file[#{download_dest_path}]"
+    action [:enable]
+  end
+end

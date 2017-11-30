@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.4.6
+-----
+
+* [Soulou] Compatibility with systemd
+
 0.4.5
 -----
 
