@@ -55,7 +55,7 @@ if node['init_package'] == "systemd"
     action :create
   end
 
-  service name do
+  service "acadock-monitoring" do
     provider Chef::Provider::Service::Systemd
     action [:enable]
   end
