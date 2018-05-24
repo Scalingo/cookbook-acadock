@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.4.8
+-----
+
+* [Soulou] Add docker.service as systemd dependency
+
 0.4.7
 -----
 
