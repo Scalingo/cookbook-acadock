@@ -36,7 +36,7 @@ if node['init_package'] == "systemd"
     systemd_content = {
       "Unit" => {
         "Description" => "Acadock - Docker monitoring tool",
-        "After" => 'network.target',
+        "After" => "network.target docker.service",
       },
       "Service" => {
         "ExecStart" => File.join(acadock_dir, "acadock-monitoring"),
