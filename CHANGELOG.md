@@ -3,6 +3,12 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.5.1
+-----
+
+* [Soulou] Update default acadock version to 0.5.1
+* [Soulou] Systemd - automatic restart when acadock binary is updated
+
 0.5.0
 -----
 

@@ -57,6 +57,7 @@ if node['init_package'] == "systemd"
 
   service "acadock-monitoring" do
     provider Chef::Provider::Service::Systemd
+    subscribes :restart, "remote_file[#{download_dest_path}]"
     action [:enable]
   end
 else
