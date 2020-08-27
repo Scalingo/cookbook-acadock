@@ -33,7 +33,7 @@ end
 
 env = [
   "PORT=#{node['acadock']['port']}",
-  "DOCKER_URL=#{node['acadock']['port']}",
+  "DOCKER_URL=#{node['acadock']['docker_url']}",
 ]
 
 if !node['acadock']['http_username'].nil? && !node['acadock']['http_password'].nil?
