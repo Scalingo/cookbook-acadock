@@ -60,6 +60,7 @@ if node['init_package'] == 'systemd'
     }
     content systemd_content
     action :create
+    notifies :restart, 'service[acadock-monitoring]', :delayed
   end
 
   service 'acadock-monitoring' do
