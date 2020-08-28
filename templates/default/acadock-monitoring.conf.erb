@@ -9,8 +9,9 @@ stop on runlevel [016]
 
 respawn
 
-env PORT=<%= @port %>
-env DOCKER_URL=<%= @docker_url %>
+<%- @env.each do |var| %>
+env <%= var %>
+<%- end %>
 
 exec <%= @target %>
 
