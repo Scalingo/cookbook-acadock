@@ -3,6 +3,12 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.6.0
+-----
+
+* [johnsudaar] Update default acadock version to 0.6.0
+* [johnsudaar] Allow the definition of credentials for acadock configuration
+
 0.5.1
 -----
 
