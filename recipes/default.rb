@@ -47,6 +47,8 @@ if node['init_package'] == 'systemd'
       'Unit' => {
         'Description' => 'Acadock - Docker monitoring tool',
         'After' => 'network.target docker.service',
+        'Requires' => 'docker.service',
+        'PartOf' => 'docker.service',
       },
       'Service' => {
         'ExecStart' => File.join(acadock_dir, 'acadock-monitoring'),
@@ -55,7 +57,7 @@ if node['init_package'] == 'systemd'
         'Environment' => env,
       },
       'Install' => {
-        'WantedBy' => 'multi-user.target',
+        'WantedBy' => 'docker.service',
       }
     }
     content systemd_content
