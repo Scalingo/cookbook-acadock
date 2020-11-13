@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+0.6.1
+-----
+
+* [Soulou] Restart acadock-monitoring when docker is restarted automatically
+
 0.6.0
 -----
 
