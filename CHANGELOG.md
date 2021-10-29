@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+1.0.0
+-----
+
+* [EtienneM] Bump acadock v1.0.0
+
 0.6.1
 -----
 
