@@ -3,6 +3,11 @@ acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+1.1.0
+-----
+
+* [brandon-welsch] Default acadock version is 1.1.0
+
 1.0.1
 -----
 
