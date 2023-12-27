@@ -1,10 +1,14 @@
-acadock CHANGELOG
-=================
+# acadock CHANGELOG
 
 This file is used to list changes made in each version of the acadock cookbook.
 
+## 1.2.1
+
+* Default acadock version is 1.2.1
+
 1.2.0
 -----
+
 * [brandon-welsch] Default acadock version is 1.2.0
 
 1.1.0
@@ -123,8 +127,3 @@ This file is used to list changes made in each version of the acadock cookbook.
 0.1.0
 -----
 * [Soulou] - Initial release of acadock
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
